@@ -9,9 +9,6 @@ files_objects = $(files:.c=.o)
 all: $(name)
 
 $(name): $(files_objects)
-	make -C ./printf
-	cp ./printf/libftprintf.a .
-	mv libftprintf.a $(name)
 	ar -rcs $(name) $(files_objects)
 
 %.o: %.c
@@ -22,7 +19,7 @@ clean:
 	rm -rf *.o
 
 create: $(name)
-	cc $(flags) -I ./printf/include main.c $(name) && ./a.out
+	cc $(flags) main.c $(name) && ./a.out
 	./a.out
 
 fclean: clean

@@ -5,17 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pvital-m <pvital-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/14 12:52:19 by pvital-m          #+#    #+#             */
-/*   Updated: 2023/04/14 13:27:50 by pvital-m         ###   ########.fr       */
+/*   Created: 2023/04/14 15:37:40 by pvital-m          #+#    #+#             */
+/*   Updated: 2023/04/14 15:38:35 by pvital-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-
-
-void ft_getchar(void)
+size_t ft_strlen(const char *s)
 {
-	char *a = NULL;
-	read(1, a, 1);
+	size_t i;
+
+	i = 0;
+	while(s[i])
+		i++;
+	return (i);
 }

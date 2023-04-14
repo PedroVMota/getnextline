@@ -6,33 +6,36 @@
 /*   By: pvital-m <pvital-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 12:53:40 by pvital-m          #+#    #+#             */
-/*   Updated: 2023/04/14 14:20:05 by pvital-m         ###   ########.fr       */
+/*   Updated: 2023/04/14 17:17:49 by pvital-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char *get_text(int fd, char *backup)
+char	*ft_strchr(char *s, int c)
 {
-	char	*content;
-	
-	content = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if(!content)
-		return (NULL);
-	content[BUFFER_SIZE + 1] = 0;
-	read(fd, content, BUFFER_SIZE);
-	ft_strjoin(backup, content);
-	return content;
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (0);
+	if (c == '\0')
+		return ((char *)&s[ft_strlen(s)]);
+	while (s[i] != '\0')
+	{
+		if (s[i] == (char) c)
+			return ((char *)&s[i]);
+		i++;
+	}
+	return (0);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	all_buffer[BUFFER_SIZE + 1];
-	char *string;
-
-	if(fd < 0)
-		return (NULL);
-	string = get_text(fd, all_buffer);
-	printf("%s", all_buffer);
-	return string;
+	static char	*text;
+	char		*string;
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
+	//prepering the content
+	text = read_file(text);
 }

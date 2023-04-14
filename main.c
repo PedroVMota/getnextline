@@ -7,5 +7,6 @@ int main (void)
 	int fd = open("leitura", O_RDONLY);
 
 	char *string = get_next_line(fd);
+	printf("%s", string);
 	free(string);
 }
