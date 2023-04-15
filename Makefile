@@ -13,15 +13,23 @@ $(name): $(files_objects)
 
 %.o: %.c
 	@printf " [$(ok)OK$(RESET_COLOR)] $<\r"
-	cc $(flags) -I ./printf/include -c $< -o $@
+	cc $(flags) -c $< -o $@
 
 clean:
 	rm -rf *.o
 
+string ?= $(shell bash -c 'read -p "" username;')
+
 create: $(name)
-	cc $(flags) main.c $(name) && ./a.out
-	./a.out
+	cc $(flags) main.c $(name) -o mainProgram && ./mainProgram
+	 @read -p "Enter Module Name:" module;
+	./mainProgram $$module
+	
 
 fclean: clean
-	make fclean -C ./printf/
 	rm -f $(name)
+
+re: del
+
+del: fclean
+	rm -f mainProgram
