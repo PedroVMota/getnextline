@@ -6,7 +6,7 @@
 /*   By: pvital-m <pvital-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 12:53:40 by pvital-m          #+#    #+#             */
-/*   Updated: 2023/04/15 18:55:38 by pvital-m         ###   ########.fr       */
+/*   Updated: 2023/04/15 19:29:06 by pvital-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,16 @@ static char	*ft_get_line(char *back)
 	return (element);
 }
 
-/*static char ft_managestatic(char *old)
+static char ft_managestatic(char *old)
 {
 	char	*new;
 
 	new = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!new)
 		return (NULL);
-	
 	free(old);
 	return (new);
-}*/
+}
 char	*get_next_line(int fd)
 {
 	char	*line;
@@ -84,6 +83,6 @@ char	*get_next_line(int fd)
 	if (!text)
 		return (NULL);
 	line = ft_get_line(text);
-/*	text = ft_managestatic(text);*/
+	text = ft_managestatic(text);
 	return (text);
 }
