@@ -22,8 +22,7 @@ string ?= $(shell bash -c 'read -p "" username;')
 
 create: $(name)
 	cc $(flags) main.c $(name) -o mainProgram && ./mainProgram
-	 @read -p "Enter Module Name:" module;
-	./mainProgram $$module
+	./mainProgram
 	
 
 fclean: clean

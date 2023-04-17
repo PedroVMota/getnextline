@@ -1,12 +1,11 @@
 #include "get_next_line.h"
 
-int main (int ac, char **av)
+int main ()
 {
-	(void)ac;
-	int fd = open("leitura", O_RDONLY);
+	system("clear");
+	int fd = open("leitura.html", O_RDONLY);
 	char *string = get_next_line(fd);
+	printf("====== RESULT ======\n");
 	printf("%s\n", string);
-
-	printf("%i", *(int *)(ft_strchr(av[1], 'd') + 0));
 	free(string);
 }

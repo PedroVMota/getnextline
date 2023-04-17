@@ -6,7 +6,7 @@
 /*   By: pvital-m <pvital-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:37:40 by pvital-m          #+#    #+#             */
-/*   Updated: 2023/04/15 18:58:55 by pvital-m         ###   ########.fr       */
+/*   Updated: 2023/04/17 10:20:32 by pvital-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ char	*ft_strchr(char *s, int c)
 	int	i;
 
 	i = 0;
-
 	if (!s)
 		return (0);
 	if (c == '\0')
@@ -84,6 +83,7 @@ char	*ft_strjoin(char *s1, char *buff)
 	while (buff[j] != '\0')
 		str[i++] = buff[j++];
 	str[ft_strlen(s1) + ft_strlen(buff)] = '\0';
-	free(s1);
+	if (s1)
+		free(s1);
 	return (str);
 }

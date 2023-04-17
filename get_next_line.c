@@ -6,13 +6,13 @@
 /*   By: pvital-m <pvital-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 12:53:40 by pvital-m          #+#    #+#             */
-/*   Updated: 2023/04/15 19:29:06 by pvital-m         ###   ########.fr       */
+/*   Updated: 2023/04/17 10:25:17 by pvital-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int fd_checker(int fd)
+static int	fd_checker(int fd)
 {
 	char	*a;
 
@@ -24,10 +24,11 @@ static int fd_checker(int fd)
 
 static char	*static_string_content(int fd, char *text)
 {
-	int	readn;
+	int		readn;
 	char	*buf;
 
 	readn = 1;
+	int i = 0;
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 		return (NULL);
@@ -40,16 +41,19 @@ static char	*static_string_content(int fd, char *text)
 			return (NULL);
 		}
 		buf[readn] = 0;
+		i++;
 		text = ft_strjoin(text, buf);
 	}
+	printf("%i, %s, %i\n", readn, ft_strchr(text, '\n'), i);
 	free(buf);
+	printf("%s", text);
 	return (text);
 }
 
 static char	*ft_get_line(char *back)
 {
-	char		*element;
-	int	index;
+	char	*element;
+	int		index;
 
 	index = -1;
 	element = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
@@ -61,28 +65,41 @@ static char	*ft_get_line(char *back)
 	return (element);
 }
 
-static char ft_managestatic(char *old)
+char	*ft_managestatic(char *old)
 {
 	char	*new;
+	int		i;
+	int newi;
 
+	newi = 0;
+	i = -1;
 	new = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!new)
 		return (NULL);
+	while(old[++i])
+		if(old[i] == '\n')
+			break;
+	while(old[++i])
+	{
+		*new = old[i];
+		new++;
+	}
+	printf("\n");
+	*new = 0;
 	free(old);
 	return (new);
 }
 char	*get_next_line(int fd)
 {
-	char	*line;
+	char		*line;
 	static char	*text;
 
 	if (fd_checker(fd))
 		return (NULL);
 	text = static_string_content(fd, text);
-	
 	if (!text)
 		return (NULL);
 	line = ft_get_line(text);
 	text = ft_managestatic(text);
-	return (text);
+	return (line);
 }
