@@ -6,7 +6,7 @@
 /*   By: pvital-m <pvital-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/04/17 11:36:25 by pvital-m         ###   ########.fr       */
+/*   Updated: 2023/04/17 12:10:25 by pvital-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,23 +46,31 @@ static char	*static_string_content(int fd, char *text)
 static char	*ft_get_line(char *back)
 {
 	char	*element;
-	int		index;
+	int		i;
 
-	index = -1;
+	i = -1;
 	element = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!element)
 		return (NULL);
-	while (++index <= BUFFER_SIZE)
-		element[index] = back[index];
-	element[index] = 0;
+	while(back[++i])
+	{
+		if(back[i] == '\n')
+		{
+			element[i] = back[i];
+			break;
+		}
+		element[i] = back[i];
+	}
 	return (element);
 }
 
 char	*ft_managestatic(char *old)
 {
-	char	*new;
+	char		*new;
 	int		i;
+	int ni;
 
+	ni = 0;
 	i = -1;
 	new = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!new)
@@ -72,11 +80,11 @@ char	*ft_managestatic(char *old)
 			break;
 	while(old[++i])
 	{
-		*new = old[i];
-		new++;
+		new[ni] = old[i];
+		ni++;
 	}
-	*new = 0;
-	free(old);
+	new[ni] = 0;
+	
 	return (new);
 }
 char	*get_next_line(int fd)
@@ -86,9 +94,7 @@ char	*get_next_line(int fd)
 
 	if (fd_checker(fd))
 		return (NULL);
-	printf("%s\n", text);
 	text = static_string_content(fd, text);
-	printf("%s", text);
 	if (!text)
 		return (NULL);
 	line = ft_get_line(text);

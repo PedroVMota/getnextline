@@ -2,12 +2,9 @@
 
 int main ()
 {
-	int fd = open("leitura.html", O_RDONLY);
+	system("clear");
+	int fd = open("vam", O_RDONLY);
 	char *string = get_next_line(fd);
-
-
-	
-	printf("====== RESULT ======\n");
-	printf("%s\n", string);
+	printf("%s", string);
 	free(string);
 }

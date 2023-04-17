@@ -1,6 +1,4 @@
 name = get_next.a
-
-
 flags = -Wall -Wextra -Werror
 # === FILES 
 files = get_next_line.c get_next_line_utils.c
