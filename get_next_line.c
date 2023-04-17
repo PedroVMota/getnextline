@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pvital-m <pvital-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/14 12:53:40 by pvital-m          #+#    #+#             */
-/*   Updated: 2023/04/17 10:25:17 by pvital-m         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/04/17 11:36:25 by pvital-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,29 +24,22 @@ static int	fd_checker(int fd)
 
 static char	*static_string_content(int fd, char *text)
 {
-	int		readn;
-	char	*buf;
-
-	readn = 1;
-	int i = 0;
-	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buf)
-		return (NULL);
-	while (readn > 0 && !ft_strchr(text, '\n'))
+	int buffer_read;
+	char *buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	
+	buffer_read = 1;
+	while(buffer_read > 0 && !ft_strchr(text, '\n'))
 	{
-		readn = read(fd, buf, BUFFER_SIZE);
-		if (readn == -1)
+		buffer_read = read(fd, buffer, BUFFER_SIZE);
+		if(buffer_read == -1)
 		{
-			free(buf);
-			return (NULL);
+			free(buffer);
+			return NULL;
 		}
-		buf[readn] = 0;
-		i++;
-		text = ft_strjoin(text, buf);
+		text = ft_strjoin(text, buffer);
 	}
-	printf("%i, %s, %i\n", readn, ft_strchr(text, '\n'), i);
-	free(buf);
-	printf("%s", text);
+	free(buffer);
+
 	return (text);
 }
 
@@ -69,9 +62,7 @@ char	*ft_managestatic(char *old)
 {
 	char	*new;
 	int		i;
-	int newi;
 
-	newi = 0;
 	i = -1;
 	new = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!new)
@@ -84,7 +75,6 @@ char	*ft_managestatic(char *old)
 		*new = old[i];
 		new++;
 	}
-	printf("\n");
 	*new = 0;
 	free(old);
 	return (new);
@@ -96,7 +86,9 @@ char	*get_next_line(int fd)
 
 	if (fd_checker(fd))
 		return (NULL);
+	printf("%s\n", text);
 	text = static_string_content(fd, text);
+	printf("%s", text);
 	if (!text)
 		return (NULL);
 	line = ft_get_line(text);

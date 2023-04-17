@@ -18,11 +18,8 @@ $(name): $(files_objects)
 clean:
 	rm -rf *.o
 
-string ?= $(shell bash -c 'read -p "" username;')
-
 create: $(name)
 	cc $(flags) main.c $(name) -o mainProgram && ./mainProgram
-	./mainProgram
 	
 
 fclean: clean

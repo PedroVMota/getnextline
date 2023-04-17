@@ -6,7 +6,7 @@
 /*   By: pvital-m <pvital-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 12:44:13 by pvital-m          #+#    #+#             */
-/*   Updated: 2023/04/17 09:42:27 by pvital-m         ###   ########.fr       */
+/*   Updated: 2023/04/17 11:38:31 by pvital-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,3 +35,15 @@ char		*ft_strjoin(char *s1, char *s2);
 char		*string_duplicate(char *content);
 int		get_char_position(char *s, char c);
 #endif
+
+int main ()
+{
+	int fd = open("leitura.html", O_RDONLY);
+	char *string = get_next_line(fd);
+
+
+	
+	printf("====== RESULT ======\n");
+	printf("%s\n", string);
+	free(string);
+}
