@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pvital-m <pvital-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:37:40 by pvital-m          #+#    #+#             */
-/*   Updated: 2023/04/18 14:24:41 by pvital-m         ###   ########.fr       */
+/*   Updated: 2023/04/18 14:24:40 by pvital-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(char *str)
 {
@@ -57,7 +57,8 @@ char	*ft_backup(char *line, char *old)
 	while (old && i2 < len2)
 		new_line[i1++] = old[i2++];
 	new_line[i1] = 0;
-	free(line);
+	if (line)
+		free(line);
 	return (new_line);
 }
 
